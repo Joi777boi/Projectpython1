@@ -1,0 +1,61 @@
+tasks = [("Проверить почту", 3), ("Написать отчёт", 1), ("Позвонить клиенту", 2)]
+ss = sorted(tasks, key=lambda i: i[1])
+print(ss)
+
+purchases = [
+    {"item": "Laptop", "price": 1000, "quantity": 2},
+    {"item": "Mouse", "price": 25, "quantity": 5},
+    {"item": "Keyboard", "price": 45, "quantity": 3}
+]
+summ=list(map(lambda i: i['price']*i['quantity'], purchases))
+print(max(summ))
+
+clients = [
+    {"name": "Alice", "income": 50000},
+    {"name": "Bob", "income": 120000},
+    {"name": "Charlie", "income": 70000}
+]
+clients2=list(map(lambda client: {
+    "name": client['name'],
+    "income": client['income'],
+    "category": ('hight' if client['income'] > 100000 else
+                 'medium' if client['income'] < 100000 and client['income'] > 50000 else
+                 'low')
+    }
+    , clients))
+print(clients2)
+
+flights = [
+    {"flight": "A1", "departure": 9, "arrival": 12},
+    {"flight": "B2", "departure": 14, "arrival": 18},
+    {"flight": "C3", "departure": 6, "arrival": 8}
+]
+pli=list(filter(lambda flight: flight['arrival']<12, flights))
+print(pli)
+
+messages = [
+    {"user": "Исследователь А", "message": "Отчёт готов. Ссылка: http://foundation.org"},
+    {"user": "Доктор Б", "message": "Документы можно найти здесь: https://classified.com"},
+    {"user": "Охранник В", "message": "Нет аномальной активности за смену."},
+    {"user": "Агент Г", "message": "Срочно изучите материалы по объекту 173 на http://statue-database.net"},
+    {"user": "Д-р Кляйн", "message": "Обновлённый протокол эксперимента доступен: https://safezone.scp"},
+    {"user": "Сотрудник Д", "message": "Просьба ознакомиться с https://docs.anomalies-secure.com перед сменой."},
+    {"user": "Старший учёный Л", "message": "Все записи переданы. Никаких аномалий на объекте 096."},
+    {"user": "Техник З", "message": "Проблема с сервером устранена. Подробнее: http://fix-report.internal"}
+]
+
+import re
+
+filtered_messages = filter(
+    lambda msg: re.search(r'http', msg["message"]),
+    messages
+)
+cleaned_messages = list(map(
+    lambda msg: {
+        "user": msg["user"],
+        "message": re.sub(r'http[^\s]+', '[ДАННЫЕ УДАЛЕНЫ]', msg["message"])
+    },
+    filtered_messages
+))
+
+print(cleaned_messages)

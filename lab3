@@ -1,0 +1,67 @@
+
+a=int(input('температура:'))
+if a>=20:
+    print('кондиционер включён')
+else:
+    print("кондиционкер выключен")
+
+a=int(input("номер месяца"))
+if a==12 or a==1 or a==2:
+    print('Брз зима')
+if a==3 or a==4 or a==5:
+    print('Весна')
+if a==6 or a==7 or a==8:
+    print('ЛеТо!')
+if a==9 or a==10 or a==11:
+    print('осень')
+if a>12:
+    print('ты чё ввёл?')
+
+a=input('введите возраст собаки')
+if a not in '1234567890111213141516171819202122' or int(a)>22 or int(a)<1:
+    print('Ошибос')
+else:
+    if int(a)>1:
+        print('возраст собаки:',int(10.5*2 + (int(a)-2)*4))
+    else:
+        print('10.5 лет')
+
+a=input('введите число:')
+n=0
+for x in a:n=int(x)+n
+if int(a[-1:])%2==0 and n%3==0:
+    print('делится')
+else:
+    print('не делится')
+
+a=input()
+dchi=False
+dup=False
+ddow=False
+dsp=False
+dlen=False
+if len(a)>7:
+    dlen=True
+for x in a:
+    if x in '0123456789':
+        dchi=True
+
+    if x in 'qwertyuiopasdfghjklzxcvbnmёйцукенгшщзхъфывапролджэячсмитьбю':
+        ddow=True
+
+    if x in 'QWERTYUIOPASDFGHJKLZXCVBNMЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ':
+        dup=True
+
+    if x in '!@#$%^&*(){}:"<>?~!"№;%:?*()`[];,./''_':
+        dsp=True
+
+if dchi==False:
+    print('нет чисел')
+if ddow==False:
+    print('нет строчной буквы')
+if dup==False:
+    print('нет заглавной буквы')
+if dsp==False:
+    print('не спкцзнвка')
+if dchi==True and ddow==True and dup==True and dsp==True and dlen==True:
+    print("подходит")
